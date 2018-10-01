@@ -1,21 +1,29 @@
+import { GraphFileBrowser } from '@microsoft/file-browser';
 import * as React from 'react';
 import './App.css';
-
-import logo from './logo.svg';
 
 class App extends React.Component {
   public render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.tsx</code> and save to reload.
-        </p>
+        <GraphFileBrowser 
+          getAuthenticationToken={this.getAuthenticationToken}
+          onSuccess={this.onSuccess}
+          onCancel={this.onCancel} />
       </div>
     );
+  }
+
+  private getAuthenticationToken(): Promise<string> {
+    return new Promise(resolve => resolve('access_token'));
+  }
+
+  private onSuccess(keys: any[]): void {
+    console.log('onSuccess', keys);
+  }
+
+  private onCancel(err: Error): void {
+    console.log('onCancel', err.message);
   }
 }
 
