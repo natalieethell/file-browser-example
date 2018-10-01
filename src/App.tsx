@@ -15,7 +15,7 @@ class App extends React.Component {
   }
 
   private getAuthenticationToken(): Promise<string> {
-    return new Promise(resolve => resolve('access_token'));
+    return new Promise(resolve => resolve('<access_token>'));
   }
 
   private onSuccess(keys: any[]): void {
