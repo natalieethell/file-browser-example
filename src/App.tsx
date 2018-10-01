@@ -1,6 +1,7 @@
 import { GraphFileBrowser } from '@microsoft/file-browser';
 import * as React from 'react';
 import './App.css';
+import { IButtonProps, PrimaryButton, DefaultButton } from 'office-ui-fabric-react/lib/Button';
 
 class App extends React.Component {
   public render() {
@@ -9,7 +10,9 @@ class App extends React.Component {
         <GraphFileBrowser 
           getAuthenticationToken={this.getAuthenticationToken}
           onSuccess={this.onSuccess}
-          onCancel={this.onCancel} />
+          onCancel={this.onCancel}
+          onRenderSuccessButton={this.onRenderSuccessButton}
+          onRenderCancelButton={this.onRenderCancelButton} />
       </div>
     );
   }
@@ -24,6 +27,14 @@ class App extends React.Component {
 
   private onCancel(err: Error): void {
     console.log('onCancel', err.message);
+  }
+
+  private onRenderSuccessButton(props: IButtonProps) {
+    return <PrimaryButton {...props} />;
+  }
+
+  private onRenderCancelButton(props: IButtonProps) {
+    return <DefaultButton {...props} />;
   }
 }
 
